@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <MoTeCM1BuildSession Locale="English_United States.1252" DefaultLocale="C" ProductName="M1Build" ProductVersion="1.4.0.131">
- <Project FileFormat="10103" Name="RM25 Project" VersionMajor="1" VersionMinor="0" BuildNumber="1" Author="Tom Petr" Company="Rensselaer Motorsport" ContactNo="(732) 687-1037" Address="2368 Burdett Ave, Troy, NY 12180" Email="petrt@rpi.edu" SupportURL="formularpi.org" Copyright="N/A" TargetHardware="ecu120" SecurityLevel="Off" DiagnosticLoggingCondition="ECU.Logging.Request" MinimumDataLogging="Data Logging Level 3">
+ <Project FileFormat="10103" Name="RM25 Project" VersionMajor="1" VersionMinor="0" BuildNumber="25" Author="Tom Petr" Company="Rensselaer Motorsport" ContactNo="(732) 687-1037" Address="2368 Burdett Ave, Troy, NY 12180" Email="petrt@rpi.edu" SupportURL="formularpi.org" Copyright="N/A" TargetHardware="ecu120" SecurityLevel="Off" DiagnosticLoggingCondition="ECU.Logging.Request" MinimumDataLogging="Data Logging Level 3">
   <System VersionMajor="1" VersionMinor="4" VersionRelease="0" VersionBuild="0081" SelectedRelease="0" SelectedBuild="0081"/>
   <SelectedModuleSets>
    <File Name="MoTeC GPS" VersionMajor="1" VersionMinor="7" VersionBuild="11"/>
@@ -737,7 +737,7 @@
      </Help>
     </Enum>
    </Type>
-   <Type Name="Engine Radiator Fan Enumeration old" Storage="enum" Default="Disabled">
+   <Type Name="Engine Radiator Fan State Enumeration" Storage="enum" Default="Disabled">
     <Enum Name="Disabled" ContainerOrder="0">
      <Help>
 <![CDATA[]]>
@@ -20160,113 +20160,356 @@
     <Component Classname="BuiltIn.MethodUserParam" Name="Root.ECU.Communication.PDM.Receive.ReceiveBase3Id4"/>
     <Component Classname="BuiltIn.MethodUserParam" Name="Root.ECU.Communication.PDM.Receive.ReceiveBase4Id0"/>
     <Component Classname="BuiltIn.MethodUserParam" Name="Root.ECU.Communication.PDM.Receive.ReceiveBase1Id0"/>
-    <Component Classname="BuiltIn.FuncUser" Name="Root.Engine.Water.Coolant Fan.Enable.Coolant Temperature.Update"/>
-    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Coolant Fan.Enable.Coolant Temperature.Hysteresis"/>
-    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Coolant Fan.Enable.Coolant Temperature.Threshold"/>
-    <Component Classname="BuiltIn.FuncUser" Name="Root.Engine.Water.Coolant Fan.Enable.Vehicle Speed.Update"/>
-    <Component Classname="BuiltIn.GroupCompound" Name="Root.Engine.Water.Coolant Fan.Enable.Coolant Temperature"/>
-    <Component Classname="BuiltIn.Channel" Name="Root.Engine.Water.Coolant Fan.Enable.Value"/>
-    <Component Classname="BuiltIn.GroupCompound" Name="Root.Engine.Water.Coolant Fan.Enable"/>
-    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Coolant Fan.Test.Duty Cycle"/>
-    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Coolant Fan.Test.Value"/>
-    <Component Classname="BuiltIn.GroupCompound" Name="Root.Engine.Water.Coolant Fan.Test"/>
-    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Coolant Fan.Open Current.Value"/>
-    <Component Classname="BuiltIn.Reference" Name="Root.Engine.Water.Coolant Fan.Open Current"/>
-    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Coolant Fan.Frequency.Value"/>
-    <Component Classname="BuiltIn.Reference" Name="Root.Engine.Water.Coolant Fan.Frequency"/>
-    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Coolant Fan.Polarity.Value"/>
-    <Component Classname="BuiltIn.Reference" Name="Root.Engine.Water.Coolant Fan.Polarity"/>
-    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Coolant Fan.Drive.Value"/>
-    <Component Classname="BuiltIn.Reference" Name="Root.Engine.Water.Coolant Fan.Drive"/>
-    <Component Classname="BuiltIn.Reference" Name="Root.Engine.Water.Coolant Fan.Engine State">
-     <Props Target="Parent.Parent.Parent.State"/>
-    </Component>
-    <Component Classname="BuiltIn.Reference" Name="Root.Engine.Water.Coolant Fan.Air Conditioner Clutch State">
-     <Props TargetCreation="AutoConst" Target="This.Value"/>
-    </Component>
-    <Component Classname="BuiltIn.Reference" Name="Root.Engine.Water.Coolant Fan.Vehicle Speed">
-     <Props Target="Parent.Parent.Parent.Parent.Vehicle.Speed"/>
-    </Component>
-    <Component Classname="BuiltIn.Reference" Name="Root.Engine.Water.Coolant Fan.Coolant Temperature">
-     <Props Target="Parent.Parent.Outlet.Temperature"/>
-    </Component>
-    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Coolant Fan.Power Save Delay.Value"/>
-    <Component Classname="BuiltIn.Reference" Name="Root.Engine.Water.Coolant Fan.Power Save Delay"/>
-    <Component Classname="BuiltIn.IOResourceValueInput" Name="Root.Engine.Water.Coolant Fan.Output Resource"/>
-    <Component Classname="MoTeC Coolant Fan.Coolant Fan" Name="Root.Engine.Water.Coolant Fan">
+    <Component Classname="BuiltIn.IOResourceParameter" Name="Root.Engine.Water.Radiator Fan.Output Resource">
+     <Props>
+      <List.UserTags>
+       <Entry Value="Setup"/>
+       <Entry Value="Output"/>
+      </List.UserTags>
+     </Props>
      <Comment>
 <![CDATA[]]>
      </Comment>
     </Component>
-    <Component Classname="BuiltIn.FuncUser" Name="Root.Engine.Water.Coolant Fan.Enable.Update"/>
-    <Component Classname="BuiltIn.GroupCompound" Name="Root.Engine.Water.Coolant Fan.Duty Cycle"/>
-    <Component Classname="BuiltIn.Channel" Name="Root.Engine.Water.Coolant Fan.Duty Cycle.Value"/>
-    <Component Classname="BuiltIn.Reference" Name="Root.Engine.Water.Coolant Fan.Duty Cycle.Minimum"/>
-    <Component Classname="BuiltIn.IOResourceParameter" Name="Root.Engine.Water.Coolant Fan.Output Resource.Value"/>
-    <Component Classname="BuiltIn.FuncGenerated.Table.Init" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Duty Cycle.Coolant Temperature.Init"/>
-    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Voltage.Input Minimum"/>
-    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Voltage.Input Bandwidth"/>
-    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Voltage.Input Source"/>
-    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Voltage.Input Impedance"/>
-    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Voltage.Update">
+    <Component Classname="BuiltIn.Channel" Name="Root.Engine.Water.Radiator Fan.State">
+     <Props Type="::This.Engine Radiator Fan State Enumeration">
+      <List.UserTags>
+       <Entry Value="Normal"/>
+      </List.UserTags>
+     </Props>
+     <Comment>
+<![CDATA[]]>
+     </Comment>
+    </Component>
+    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Radiator Fan.Frequency">
+     <Props Qty="Hz" Validation="MinMax" ValMin="0.00000000000000000e+000" ValMax="2.00000000000000000e+004">
+      <List.UserTags>
+       <Entry Value="Setup"/>
+      </List.UserTags>
+     </Props>
+     <Comment>
+<![CDATA[]]>
+     </Comment>
+    </Component>
+    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Radiator Fan.Test">
+     <Props Type="MoTeC Types.Mode Enumeration">
+      <List.UserTags>
+       <Entry Value="Tune"/>
+      </List.UserTags>
+     </Props>
+     <Comment>
+<![CDATA[]]>
+     </Comment>
+    </Component>
+    <Component Classname="BuiltIn.Timer" Name="Root.Engine.Water.Radiator Fan.Timer"/>
+    <Component Classname="BuiltIn.FuncGenerated.Timer.Set" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Timer.Start">
+     <Signature Name="" ReturnType="">
+      <Params>
+       <Param Name="Timeout" Type="f32" Attrs="0">
+        <Description>
+<![CDATA[]]>
+        </Description>
+       </Param>
+      </Params>
+      <Description>
+<![CDATA[]]>
+      </Description>
+      <DescriptionFull>
+<![CDATA[]]>
+      </DescriptionFull>
+      <ReturnDescription>
+<![CDATA[]]>
+      </ReturnDescription>
+     </Signature>
+    </Component>
+    <Component Classname="BuiltIn.FuncGenerated.Timer.Remaining" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Timer.Remaining">
+     <Signature Name="" ReturnType="f32">
+      <Params/>
+      <Description>
+<![CDATA[]]>
+      </Description>
+      <DescriptionFull>
+<![CDATA[]]>
+      </DescriptionFull>
+      <ReturnDescription>
+<![CDATA[]]>
+      </ReturnDescription>
+     </Signature>
+    </Component>
+    <Component Classname="BuiltIn.Table" Name="Root.Engine.Water.Radiator Fan.Duty Cycle">
+     <Props NumAxes="2">
+      <List.UserTags>
+       <Entry Value="Tune"/>
+      </List.UserTags>
+      <Axis>
+       <X Source="Parent.Parent.Outlet.Temperature" MaxSites="21" MandatoryTune="true"/>
+       <Y Source="Parent.Parent.Parent.Load.Average" MaxSites="16"/>
+      </Axis>
+     </Props>
+     <Comment>
+<![CDATA[]]>
+     </Comment>
+    </Component>
+    <Component Classname="BuiltIn.Channel" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Duty Cycle.Value">
+     <Props Qty="ratio" Validation="MinMax" ValMin="-1.00000000000000000e+000" ValMax="1.00000000000000000e+000">
+      <Locale>
+       <Default Unit="%" Min="-1.00000000000000000e+000" Max="1.00000000000000000e+000"/>
+      </Locale>
+     </Props>
+    </Component>
+    <Component Classname="BuiltIn.FuncGenerated.Table.Init" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Duty Cycle.Init"/>
+    <Component Classname="BuiltIn.FuncGenerated.Table.Lookup" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Duty Cycle.Update">
      <Props SelectedTrigger="Parent.Parent.Parent.Parent.Parent.Events.On 10Hz"/>
     </Component>
-    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Voltage.Initialise"/>
-    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Voltage.Release"/>
-    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Voltage.Reserve"/>
-    <Component Classname="BuiltIn.IOResourceValueInput" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Voltage.Resource"/>
-    <Component Classname="BuiltIn.Channel" Name="Root.Engine.Water.Coolant Fan.Enable.Coolant Temperature.Value"/>
-    <Component Classname="BuiltIn.Constant" Name="Root.Engine.Water.Coolant Fan.Voltage.Filter.Value"/>
-    <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Voltage.Filter"/>
-    <Component Classname="BuiltIn.Channel" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Voltage.Absolute"/>
-    <Component Classname="BuiltIn.Channel" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Voltage.Absolute Filtered"/>
-    <Component Classname="_IOMethod.abs" Name="Root.Engine.Water.Coolant Fan.Voltage"/>
-    <Component Classname="BuiltIn.FuncGenerated.Table.Lookup" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Duty Cycle.Coolant Temperature.Update"/>
-    <Component Classname="BuiltIn.MethodUserParam" Name="Root.Engine.Water.Coolant Fan.Duty Cycle.SetDuty"/>
-    <Component Classname="_IOMethod.pwm" Name="Root.Engine.Water.Coolant Fan.Output"/>
-    <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Output.Frequency"/>
-    <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Output.Duty Cycle"/>
-    <Component Classname="BuiltIn.IOResourceValueInput" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Output.Resource"/>
-    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Coolant Fan.Duty Cycle.Minimum.Value"/>
-    <Component Classname="BuiltIn.FuncUser" Name="Root.Engine.Water.Coolant Fan.Update">
+    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Voltage.Input Maximum">
+     <Props Qty="V"/>
+    </Component>
+    <Component Classname="_IOMethod.abs" Name="Root.Engine.Water.Radiator Fan.Voltage">
+     <Comment>
+<![CDATA[]]>
+     </Comment>
+    </Component>
+    <Component Classname="BuiltIn.Channel" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Voltage.Absolute Filtered">
+     <Props>
+      <List.UserTags>
+       <Entry Value="Normal"/>
+      </List.UserTags>
+     </Props>
+    </Component>
+    <Component Classname="BuiltIn.Channel" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Voltage.Absolute">
+     <Props>
+      <List.UserTags>
+       <Entry Value="Normal"/>
+      </List.UserTags>
+     </Props>
+    </Component>
+    <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Voltage.Filter">
+     <Props TargetCreation="AutoConst" Target="This.Value">
+      <List.UserTags>
+       <Entry Value="Setup"/>
+      </List.UserTags>
+     </Props>
+    </Component>
+    <Component Classname="BuiltIn.Constant" Name="Root.Engine.Water.Radiator Fan.Voltage.Filter.Value">
+     <Props Value="0.00000000000000000e+000"/>
+    </Component>
+    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Voltage.Input Resolution">
+     <Props Qty="V"/>
+    </Component>
+    <Component Classname="BuiltIn.FuncUser" Filename="Engine.Water.Radiator Fan.Update.m1scr" Name="Root.Engine.Water.Radiator Fan.Update">
      <Props SelectedTrigger="Parent.Parent.Parent.Parent.Events.On 10Hz"/>
     </Component>
-    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Output.Reserve"/>
-    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Output.Release"/>
-    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Output.Update"/>
-    <Component Classname="_IOMethod.INJ_PH_IO" Name="Root.Engine.Water.Coolant Fan.Pin"/>
-    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Voltage.Input Resolution"/>
-    <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Pin.Drive"/>
-    <Component Classname="BuiltIn.Constant" Name="Root.Engine.Water.Coolant Fan.Pin.Drive.Value"/>
-    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Pin.Update"/>
-    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Voltage.Input Maximum"/>
-    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Pin.Initialise"/>
-    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Pin.Release"/>
-    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Pin.Reserve"/>
-    <Component Classname="BuiltIn.IOResourceValueInput" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Pin.Resource"/>
-    <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Pin.Hold Current"/>
-    <Component Classname="BuiltIn.Constant" Name="Root.Engine.Water.Coolant Fan.Pin.Peak Current.Value"/>
-    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Coolant Fan.Enable.Vehicle Speed.Threshold"/>
-    <Component Classname="BuiltIn.Channel" Name="Root.Engine.Water.Coolant Fan.Enable.Vehicle Speed.Value"/>
-    <Component Classname="BuiltIn.GroupCompound" Name="Root.Engine.Water.Coolant Fan.Enable.Vehicle Speed"/>
-    <Component Classname="BuiltIn.Channel" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Pin.Diagnostic"/>
-    <Component Classname="BuiltIn.FuncUser" Name="Root.Engine.Water.Coolant Fan.Enable.Air Conditioner.Update"/>
-    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Coolant Fan.Enable.Air Conditioner.Mode"/>
-    <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Pin.Peak Current"/>
-    <Component Classname="BuiltIn.Channel" Name="Root.Engine.Water.Coolant Fan.Enable.Air Conditioner.Value"/>
-    <Component Classname="BuiltIn.GroupCompound" Name="Root.Engine.Water.Coolant Fan.Enable.Air Conditioner"/>
-    <Component Classname="BuiltIn.Reference" Name="Root.Engine.Water.Coolant Fan.Duty Cycle.Maximum"/>
-    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Coolant Fan.Duty Cycle.Maximum.Value"/>
-    <Component Classname="BuiltIn.Table" Name="Root.Engine.Water.Coolant Fan.Duty Cycle.Air Conditioner"/>
-    <Component Classname="BuiltIn.Channel" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Duty Cycle.Air Conditioner.Value"/>
-    <Component Classname="BuiltIn.FuncGenerated.Table.Init" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Duty Cycle.Air Conditioner.Init"/>
-    <Component Classname="BuiltIn.FuncGenerated.Table.Lookup" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Duty Cycle.Air Conditioner.Update"/>
-    <Component Classname="BuiltIn.Table" Name="Root.Engine.Water.Coolant Fan.Duty Cycle.Coolant Temperature"/>
-    <Component Classname="BuiltIn.Channel" Caps="AutoCreated" Name="Root.Engine.Water.Coolant Fan.Duty Cycle.Coolant Temperature.Value"/>
-    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Coolant Fan.Enable.Vehicle Speed.Hysteresis"/>
-    <Component Classname="BuiltIn.Constant" Name="Root.Engine.Water.Coolant Fan.Air Conditioner Clutch State.Value">
-     <Props Value="Off"/>
+    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Radiator Fan.Test Duty Cycle">
+     <Props Qty="ratio" Validation="MinMax" ValMin="-1.00000000000000000e+000" ValMax="1.00000000000000000e+000">
+      <List.UserTags>
+       <Entry Value="Setup"/>
+      </List.UserTags>
+      <Locale>
+       <Default Unit="%"/>
+      </Locale>
+     </Props>
+     <Comment>
+<![CDATA[]]>
+     </Comment>
     </Component>
+    <Component Classname="BuiltIn.IOResourceValueInput" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Voltage.Resource">
+     <Props NameTarget="Parent.Parent.Output Resource">
+      <List.UserTags>
+       <Entry Value="Setup"/>
+      </List.UserTags>
+     </Props>
+    </Component>
+    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Radiator Fan.Off Duty Cycle">
+     <Props Qty="ratio" Validation="MinMax" ValMin="-1.00000000000000000e+000" ValMax="1.00000000000000000e+000">
+      <List.UserTags>
+       <Entry Value="Setup"/>
+      </List.UserTags>
+      <Locale>
+       <Default Unit="%"/>
+      </Locale>
+     </Props>
+     <Comment>
+<![CDATA[]]>
+     </Comment>
+    </Component>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Voltage.Release"/>
+    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Radiator Fan.Shutoff Filter">
+     <Props Qty="s">
+      <List.UserTags>
+       <Entry Value="Setup"/>
+      </List.UserTags>
+     </Props>
+     <Comment>
+<![CDATA[]]>
+     </Comment>
+    </Component>
+    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Voltage.Input Minimum">
+     <Props Qty="V"/>
+    </Component>
+    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Radiator Fan.Shutoff Temperature Hysteresis">
+     <Props Qty="K">
+      <List.UserTags>
+       <Entry Value="Setup"/>
+      </List.UserTags>
+     </Props>
+     <Comment>
+<![CDATA[]]>
+     </Comment>
+    </Component>
+    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Radiator Fan.Increment">
+     <Props Qty="ratio" Validation="MinMax" ValMin="0.00000000000000000e+000" ValMax="3.00000000000000000e+000">
+      <List.UserTags>
+       <Entry Value="Setup"/>
+      </List.UserTags>
+      <Locale>
+       <Default Unit="%"/>
+      </Locale>
+     </Props>
+     <Comment>
+<![CDATA[]]>
+     </Comment>
+    </Component>
+    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Radiator Fan.Shutoff Temperature">
+     <Props Qty="K">
+      <List.UserTags>
+       <Entry Value="Setup"/>
+      </List.UserTags>
+     </Props>
+     <Comment>
+<![CDATA[]]>
+     </Comment>
+    </Component>
+    <Component Classname="BuiltIn.GroupCompound" Name="Root.Engine.Water.Radiator Fan">
+     <Comment>
+<![CDATA[]]>
+     </Comment>
+    </Component>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Voltage.Reserve"/>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Voltage.Initialise"/>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Voltage.Update">
+     <Props SelectedTrigger="Parent.Parent.Parent.Parent.Parent.Events.On 100Hz"/>
+    </Component>
+    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Voltage.Input Impedance">
+     <Props Qty="ohm"/>
+    </Component>
+    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Voltage.Input Source">
+     <Props Qty="V"/>
+    </Component>
+    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Voltage.Input Bandwidth">
+     <Props Qty="Hz"/>
+    </Component>
+    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Input Minimum"/>
+    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Input Bandwidth"/>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Output.Release"/>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Output.Update">
+     <Props SelectedTrigger="Parent.Parent.Parent.Parent.Parent.Events.On 50Hz"/>
+    </Component>
+    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Input Source"/>
+    <Component Classname="BuiltIn.IOResourceParameter" Name="Root.Engine.Water.Radiator Fan.Relay Enable Output Resource">
+     <Props>
+      <List.UserTags>
+       <Entry Value="Setup"/>
+      </List.UserTags>
+     </Props>
+     <Comment>
+<![CDATA[]]>
+     </Comment>
+    </Component>
+    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Input Impedance"/>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Update">
+     <Props SelectedTrigger="Parent.Parent.Parent.Parent.Parent.Parent.Events.On 50Hz"/>
+    </Component>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Initialise"/>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Release"/>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Reserve"/>
+    <Component Classname="BuiltIn.Constant" Name="Root.Engine.Water.Radiator Fan.Relay.Pin.Drive.Value"/>
+    <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Pin.Peak Current"/>
+    <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Pin.Drive"/>
+    <Component Classname="BuiltIn.Channel" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Pin.Diagnostic"/>
+    <Component Classname="_IOMethod.INJ_PH_IO" Name="Root.Engine.Water.Radiator Fan.Relay.Pin"/>
+    <Component Classname="BuiltIn.Constant" Name="Root.Engine.Water.Radiator Fan.Relay.Pin.Peak Current.Value"/>
+    <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Pin.Hold Current"/>
+    <Component Classname="BuiltIn.IOResourceValueInput" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Pin.Resource"/>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Pin.Reserve"/>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Pin.Release"/>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Pin.Initialise"/>
+    <Component Classname="BuiltIn.MethodUserParam" Name="Root.Engine.Water.Radiator Fan.Relay.SetState"/>
+    <Component Classname="BuiltIn.IOResourceValueInput" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Resource"/>
+    <Component Classname="BuiltIn.Constant" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Filter.Value"/>
+    <Component Classname="_IOMethod.pwm" Name="Root.Engine.Water.Radiator Fan.Output">
+     <Props>
+      <List.UserTags>
+       <Entry Value="Output"/>
+      </List.UserTags>
+     </Props>
+     <Comment>
+<![CDATA[]]>
+     </Comment>
+    </Component>
+    <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Output.Frequency">
+     <Props Target="Parent.Parent.Frequency">
+      <List.UserTags>
+       <Entry Value="Normal"/>
+      </List.UserTags>
+     </Props>
+    </Component>
+    <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Output.Duty Cycle">
+     <Props TargetCreation="AutoChannel">
+      <List.UserTags>
+       <Entry Value="Normal"/>
+      </List.UserTags>
+     </Props>
+    </Component>
+    <Component Classname="BuiltIn.Channel" Name="Root.Engine.Water.Radiator Fan.Output.Duty Cycle.Value">
+     <Props>
+      <Locale>
+       <Default Min="-1.00000000000000000e+000" Max="1.00000000000000000e+000"/>
+      </Locale>
+     </Props>
+    </Component>
+    <Component Classname="BuiltIn.IOResourceValueInput" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Output.Resource">
+     <Props NameTarget="Parent.Parent.Output Resource">
+      <List.UserTags>
+       <Entry Value="Setup"/>
+      </List.UserTags>
+     </Props>
+    </Component>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Output.Reserve"/>
+    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Input Resolution"/>
+    <Component Classname="BuiltIn.IOCharacteristic" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Input Maximum"/>
+    <Component Classname="MoTeC Output.Switched Output" Name="Root.Engine.Water.Radiator Fan.Relay">
+     <Comment>
+<![CDATA[]]>
+     </Comment>
+    </Component>
+    <Component Classname="BuiltIn.IOResourceValueInput" Name="Root.Engine.Water.Radiator Fan.Relay.Resource">
+     <Props NameCreation="Manual" NameTarget="Parent.Parent.Relay Enable Output Resource"/>
+    </Component>
+    <Component Classname="BuiltIn.Channel" Name="Root.Engine.Water.Radiator Fan.Relay.State"/>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Pin.Update"/>
+    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Radiator Fan.Relay.Drive.Value"/>
+    <Component Classname="BuiltIn.Reference" Name="Root.Engine.Water.Radiator Fan.Relay.Test"/>
+    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Radiator Fan.Relay.Test.Value"/>
+    <Component Classname="BuiltIn.Reference" Name="Root.Engine.Water.Radiator Fan.Relay.Polarity"/>
+    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Radiator Fan.Relay.Polarity.Value"/>
+    <Component Classname="BuiltIn.Reference" Name="Root.Engine.Water.Radiator Fan.Relay.Open Current"/>
+    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Radiator Fan.Relay.Open Current.Value"/>
+    <Component Classname="_IOMethod.pwm" Name="Root.Engine.Water.Radiator Fan.Relay.Output"/>
+    <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Output.Frequency"/>
+    <Component Classname="BuiltIn.Constant" Name="Root.Engine.Water.Radiator Fan.Relay.Output.Frequency.Value"/>
+    <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Output.Duty Cycle"/>
+    <Component Classname="BuiltIn.Channel" Name="Root.Engine.Water.Radiator Fan.Relay.Output.Duty Cycle.Value"/>
+    <Component Classname="BuiltIn.IOResourceValueInput" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Output.Resource"/>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Output.Reserve"/>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Output.Release"/>
+    <Component Classname="BuiltIn.FuncGenerated.IOMethod" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Output.Update">
+     <Props SelectedTrigger="Parent.Parent.Parent.Parent.Parent.Parent.Events.On 10Hz"/>
+    </Component>
+    <Component Classname="_IOMethod.abs" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage"/>
+    <Component Classname="BuiltIn.Channel" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Absolute Filtered"/>
+    <Component Classname="BuiltIn.Channel" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Absolute"/>
+    <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Filter"/>
+    <Component Classname="BuiltIn.Reference" Name="Root.Engine.Water.Radiator Fan.Relay.Drive"/>
    </List>
    <Organisation>
     <Component Name="Root">
@@ -22472,97 +22715,29 @@
         </Component>
         <Component Name="Update"/>
        </Component>
-       <Component Name="Coolant Fan">
-        <Component Name="Output Resource">
-         <Component Name="Value"/>
-        </Component>
-        <Component Name="Power Save Delay">
-         <Component Name="Value"/>
-        </Component>
-        <Component Name="Coolant Temperature"/>
-        <Component Name="Vehicle Speed"/>
-        <Component Name="Air Conditioner Clutch State">
-         <Component Name="Value"/>
-        </Component>
-        <Component Name="Engine State"/>
-        <Component Name="Drive">
-         <Component Name="Value"/>
-        </Component>
-        <Component Name="Polarity">
-         <Component Name="Value"/>
-        </Component>
-        <Component Name="Frequency">
-         <Component Name="Value"/>
-        </Component>
-        <Component Name="Open Current">
-         <Component Name="Value"/>
-        </Component>
-        <Component Name="Test">
-         <Component Name="Value"/>
-         <Component Name="Duty Cycle"/>
-        </Component>
-        <Component Name="Enable">
-         <Component Name="Value"/>
-         <Component Name="Coolant Temperature">
+       <Component Name="Radiator Fan">
+        <Component Name="Output">
+         <Component Name="Frequency"/>
+         <Component Name="Duty Cycle">
           <Component Name="Value"/>
-          <Component Name="Threshold"/>
-          <Component Name="Hysteresis"/>
-          <Component Name="Update"/>
          </Component>
-         <Component Name="Air Conditioner">
-          <Component Name="Value"/>
-          <Component Name="Mode"/>
-          <Component Name="Update"/>
-         </Component>
-         <Component Name="Vehicle Speed">
-          <Component Name="Value"/>
-          <Component Name="Threshold"/>
-          <Component Name="Hysteresis"/>
-          <Component Name="Update"/>
-         </Component>
+         <Component Name="Resource"/>
+         <Component Name="Reserve"/>
+         <Component Name="Release"/>
          <Component Name="Update"/>
+        </Component>
+        <Component Name="Output Resource"/>
+        <Component Name="Relay Enable Output Resource"/>
+        <Component Name="State"/>
+        <Component Name="Frequency"/>
+        <Component Name="Test"/>
+        <Component Name="Timer">
+         <Component Name="Start"/>
+         <Component Name="Remaining"/>
         </Component>
         <Component Name="Duty Cycle">
          <Component Name="Value"/>
-         <Component Name="Minimum">
-          <Component Name="Value"/>
-         </Component>
-         <Component Name="Maximum">
-          <Component Name="Value"/>
-         </Component>
-         <Component Name="Air Conditioner">
-          <Component Name="Value"/>
-          <Component Name="Init"/>
-          <Component Name="Update"/>
-         </Component>
-         <Component Name="Coolant Temperature">
-          <Component Name="Value"/>
-          <Component Name="Init"/>
-          <Component Name="Update"/>
-         </Component>
-         <Component Name="SetDuty"/>
-        </Component>
-        <Component Name="Output">
-         <Component Name="Frequency"/>
-         <Component Name="Duty Cycle"/>
-         <Component Name="Resource"/>
-         <Component Name="Reserve"/>
-         <Component Name="Release"/>
-         <Component Name="Update"/>
-        </Component>
-        <Component Name="Pin">
-         <Component Name="Diagnostic"/>
-         <Component Name="Drive">
-          <Component Name="Value"/>
-         </Component>
-         <Component Name="Peak Current">
-          <Component Name="Value"/>
-         </Component>
-         <Component Name="Hold Current"/>
-         <Component Name="Resource"/>
-         <Component Name="Reserve"/>
-         <Component Name="Release"/>
-         <Component Name="Initialise"/>
+         <Component Name="Init"/>
          <Component Name="Update"/>
         </Component>
         <Component Name="Voltage">
@@ -22584,6 +22759,74 @@
          <Component Name="Input Resolution"/>
         </Component>
         <Component Name="Update"/>
+        <Component Name="Test Duty Cycle"/>
+        <Component Name="Off Duty Cycle"/>
+        <Component Name="Shutoff Filter"/>
+        <Component Name="Shutoff Temperature"/>
+        <Component Name="Shutoff Temperature Hysteresis"/>
+        <Component Name="Increment"/>
+        <Component Name="Relay">
+         <Component Name="Resource"/>
+         <Component Name="State"/>
+         <Component Name="Drive">
+          <Component Name="Value"/>
+         </Component>
+         <Component Name="Test">
+          <Component Name="Value"/>
+         </Component>
+         <Component Name="Polarity">
+          <Component Name="Value"/>
+         </Component>
+         <Component Name="Open Current">
+          <Component Name="Value"/>
+         </Component>
+         <Component Name="Output">
+          <Component Name="Frequency">
+           <Component Name="Value"/>
+          </Component>
+          <Component Name="Duty Cycle">
+           <Component Name="Value"/>
+          </Component>
+          <Component Name="Resource"/>
+          <Component Name="Reserve"/>
+          <Component Name="Release"/>
+          <Component Name="Update"/>
+         </Component>
+         <Component Name="Voltage">
+          <Component Name="Absolute Filtered"/>
+          <Component Name="Absolute"/>
+          <Component Name="Filter">
+           <Component Name="Value"/>
+          </Component>
+          <Component Name="Resource"/>
+          <Component Name="Reserve"/>
+          <Component Name="Release"/>
+          <Component Name="Initialise"/>
+          <Component Name="Update"/>
+          <Component Name="Input Impedance"/>
+          <Component Name="Input Source"/>
+          <Component Name="Input Bandwidth"/>
+          <Component Name="Input Minimum"/>
+          <Component Name="Input Maximum"/>
+          <Component Name="Input Resolution"/>
+         </Component>
+         <Component Name="Pin">
+          <Component Name="Diagnostic"/>
+          <Component Name="Drive">
+           <Component Name="Value"/>
+          </Component>
+          <Component Name="Peak Current">
+           <Component Name="Value"/>
+          </Component>
+          <Component Name="Hold Current"/>
+          <Component Name="Resource"/>
+          <Component Name="Reserve"/>
+          <Component Name="Release"/>
+          <Component Name="Initialise"/>
+          <Component Name="Update"/>
+         </Component>
+         <Component Name="SetState"/>
+        </Component>
        </Component>
       </Component>
       <Component Name="Crankcase">
