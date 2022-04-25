@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <MoTeCM1BuildSession Locale="English_United States.1252" DefaultLocale="C" ProductName="M1Build" ProductVersion="1.4.0.131">
- <Project FileFormat="10103" Name="RM25 Project" VersionMajor="1" VersionMinor="0" BuildNumber="26" Author="Tom Petr" Company="Rensselaer Motorsport" ContactNo="(732) 687-1037" Address="2368 Burdett Ave, Troy, NY 12180" Email="petrt@rpi.edu" SupportURL="formularpi.org" Copyright="N/A" TargetHardware="ecu120" SecurityLevel="Off" DiagnosticLoggingCondition="ECU.Logging.Request" MinimumDataLogging="Data Logging Level 3">
+ <Project FileFormat="10103" Name="RM25 Project" VersionMajor="1" VersionMinor="0" BuildNumber="25" Author="Tom Petr" Company="Rensselaer Motorsport" ContactNo="(732) 687-1037" Address="2368 Burdett Ave, Troy, NY 12180" Email="petrt@rpi.edu" SupportURL="formularpi.org" Copyright="N/A" TargetHardware="ecu120" SecurityLevel="Off" DiagnosticLoggingCondition="ECU.Logging.Request" MinimumDataLogging="Data Logging Level 3">
   <System VersionMajor="1" VersionMinor="4" VersionRelease="0" VersionBuild="0081" SelectedRelease="0" SelectedBuild="0081"/>
   <SelectedModuleSets>
    <File Name="MoTeC GPS" VersionMajor="1" VersionMinor="7" VersionBuild="11"/>
@@ -20409,7 +20409,6 @@
      <Props>
       <List.UserTags>
        <Entry Value="Setup"/>
-       <Entry Value="Output"/>
       </List.UserTags>
      </Props>
      <Comment>
@@ -20455,7 +20454,7 @@
      </Props>
     </Component>
     <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Output.Duty Cycle">
-     <Props TargetCreation="AutoChannel" Target="This.Value">
+     <Props TargetCreation="AutoChannel">
       <List.UserTags>
        <Entry Value="Normal"/>
       </List.UserTags>

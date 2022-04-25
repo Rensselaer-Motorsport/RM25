@@ -27,11 +27,11 @@ if (not Output.IsActive()) {
 	State = State.Enabled;
 	Output.Duty Cycle -= Increment;
 	Timer.Start(1.0);
-} else if (on and Timer.Remaining() <= 0.0 and Output.Duty Cycle < Duty Cycle) {
+} else if (on and Output.Duty Cycle < Duty Cycle) {
 	State = State.Enabled;
 	Output.Duty Cycle = Duty Cycle;
 	Timer.Start(1.0);
-} else if (not on and Test eq Test.Disabled) {
+} else if (Test eq Test.Disabled) {
 	State = State.Disabled;
 	Output.Duty Cycle = Off Duty Cycle;
 }
