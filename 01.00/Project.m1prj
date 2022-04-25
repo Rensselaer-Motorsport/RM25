@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <MoTeCM1BuildSession Locale="English_United States.1252" DefaultLocale="C" ProductName="M1Build" ProductVersion="1.4.0.131">
- <Project FileFormat="10103" Name="RM25 Project" VersionMajor="1" VersionMinor="0" BuildNumber="26" Author="Tom Petr" Company="Rensselaer Motorsport" ContactNo="(732) 687-1037" Address="2368 Burdett Ave, Troy, NY 12180" Email="petrt@rpi.edu" SupportURL="formularpi.org" Copyright="N/A" TargetHardware="ecu120" SecurityLevel="Off" DiagnosticLoggingCondition="ECU.Logging.Request" MinimumDataLogging="Data Logging Level 3">
+ <Project FileFormat="10103" Name="RM25 Project" VersionMajor="1" VersionMinor="0" BuildNumber="29" Author="Tom Petr" Company="Rensselaer Motorsport" ContactNo="(732) 687-1037" Address="2368 Burdett Ave, Troy, NY 12180" Email="petrt@rpi.edu" SupportURL="formularpi.org" Copyright="N/A" TargetHardware="ecu120" SecurityLevel="Off" DiagnosticLoggingCondition="ECU.Logging.Request" MinimumDataLogging="Data Logging Level 3">
   <System VersionMajor="1" VersionMinor="4" VersionRelease="0" VersionBuild="0081" SelectedRelease="0" SelectedBuild="0081"/>
   <SelectedModuleSets>
    <File Name="MoTeC GPS" VersionMajor="1" VersionMinor="7" VersionBuild="11"/>
@@ -293,6 +293,16 @@
      </Help>
     </Enum>
     <Enum Name="Test" ContainerOrder="2">
+     <Help>
+<![CDATA[]]>
+     </Help>
+    </Enum>
+    <Enum Name="Crank" ContainerOrder="3">
+     <Help>
+<![CDATA[]]>
+     </Help>
+    </Enum>
+    <Enum Name="Startup" ContainerOrder="4">
      <Help>
 <![CDATA[]]>
      </Help>
@@ -20511,6 +20521,91 @@
     <Component Classname="BuiltIn.Channel" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Absolute"/>
     <Component Classname="BuiltIn.Reference" Caps="AutoCreated" Name="Root.Engine.Water.Radiator Fan.Relay.Voltage.Filter"/>
     <Component Classname="BuiltIn.Reference" Name="Root.Engine.Water.Radiator Fan.Relay.Drive"/>
+    <Component Classname="BuiltIn.Timer" Name="Root.Engine.Water.Pump.Startup Procedure"/>
+    <Component Classname="BuiltIn.FuncGenerated.Timer.Set" Caps="AutoCreated" Name="Root.Engine.Water.Pump.Startup Procedure.Start">
+     <Signature Name="" ReturnType="">
+      <Params>
+       <Param Name="Timeout" Type="f32" Attrs="0"/>
+      </Params>
+      <Description>
+<![CDATA[]]>
+      </Description>
+      <DescriptionFull>
+<![CDATA[]]>
+      </DescriptionFull>
+      <ReturnDescription>
+<![CDATA[]]>
+      </ReturnDescription>
+     </Signature>
+    </Component>
+    <Component Classname="BuiltIn.FuncGenerated.Timer.Remaining" Caps="AutoCreated" Name="Root.Engine.Water.Pump.Startup Procedure.Remaining">
+     <Signature Name="" ReturnType="f32">
+      <Params/>
+      <Description>
+<![CDATA[]]>
+      </Description>
+      <DescriptionFull>
+<![CDATA[]]>
+      </DescriptionFull>
+      <ReturnDescription>
+<![CDATA[]]>
+      </ReturnDescription>
+     </Signature>
+    </Component>
+    <Component Classname="BuiltIn.Timer" Name="Root.Engine.Water.Pump.Crank Timer"/>
+    <Component Classname="BuiltIn.FuncGenerated.Timer.Remaining" Caps="AutoCreated" Name="Root.Engine.Water.Pump.Crank Timer.Remaining">
+     <Signature Name="" ReturnType="f32">
+      <Params/>
+      <Description>
+<![CDATA[]]>
+      </Description>
+      <DescriptionFull>
+<![CDATA[]]>
+      </DescriptionFull>
+      <ReturnDescription>
+<![CDATA[]]>
+      </ReturnDescription>
+     </Signature>
+    </Component>
+    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Pump.Startup On Time">
+     <Props Qty="s" Validation="Positive Gain">
+      <List.UserTags>
+       <Entry Value="Setup"/>
+      </List.UserTags>
+     </Props>
+     <Comment>
+<![CDATA[]]>
+     </Comment>
+    </Component>
+    <Component Classname="BuiltIn.Parameter" Name="Root.Engine.Water.Pump.Startup Duty">
+     <Props Qty="ratio" Validation="MinMax" ValMin="0.00000000000000000e+000" ValMax="1.00000000000000000e+000">
+      <List.UserTags>
+       <Entry Value="Setup"/>
+      </List.UserTags>
+      <Locale>
+       <Default Unit="%"/>
+      </Locale>
+     </Props>
+     <Comment>
+<![CDATA[]]>
+     </Comment>
+    </Component>
+    <Component Classname="BuiltIn.FuncGenerated.Timer.Set" Caps="AutoCreated" Name="Root.Engine.Water.Pump.Crank Timer.Start">
+     <Signature Name="" ReturnType="">
+      <Params>
+       <Param Name="Timeout" Type="f32" Attrs="0"/>
+      </Params>
+      <Description>
+<![CDATA[]]>
+      </Description>
+      <DescriptionFull>
+<![CDATA[]]>
+      </DescriptionFull>
+      <ReturnDescription>
+<![CDATA[]]>
+      </ReturnDescription>
+     </Signature>
+    </Component>
    </List>
    <Organisation>
     <Component Name="Root">
@@ -22511,6 +22606,16 @@
         <Component Name="Shutoff Filter"/>
         <Component Name="Shutoff Temperature"/>
         <Component Name="Shutoff Temperature Hysteresis"/>
+        <Component Name="Startup Procedure">
+         <Component Name="Start"/>
+         <Component Name="Remaining"/>
+        </Component>
+        <Component Name="Crank Timer">
+         <Component Name="Start"/>
+         <Component Name="Remaining"/>
+        </Component>
+        <Component Name="Startup On Time"/>
+        <Component Name="Startup Duty"/>
        </Component>
        <Component Name="Pressure">
         <Component Name="Value"/>
